@@ -386,7 +386,7 @@ A kísérletek során sikerült bemutatni, hogy a rekurzív és egylépéses el�
 
 ### Limitációk
 
-A házi feladat során csupán egy architektúrát vizsgáltunk, egyetlen idősoron. Előfordulhat, hogy más architektúrák vagy idősorok esetén más eredmények születnének. Elképzelhetőek olyan modellek is, amelyek nem tisztán az egyik vagy más megközelítést használják, hanem egyesítik a rekurzív és egylépéses előrejelzést, így kihasználva mindkét megközelítés előnyeit [@taiebrecursive].
+A házi feladat során csupán egy architektúrát vizsgáltunk, egyetlen idősoron. Előfordulhat, hogy más architektúrák vagy idősorok esetén más eredmények születnének. Elképzelhetőek olyan modellek is, amelyek nem tisztán az egyik vagy más megközelítést használják, hanem egyesítik a rekurzív és egylépéses előrejelzést, így kihasználva mindkét megközelítés előnyeit [@taiebrecursive]. A rekurzív előrejelzés esetén nem alkalmaztunk teacher forcing-ot, amely szintén javíthatná a modell teljesítményét [@von2020end].
 
 ## Irodalomgyűjtemény
 
