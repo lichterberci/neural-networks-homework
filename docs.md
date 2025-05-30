@@ -161,11 +161,11 @@ $$
 
 **A vizsgált jel paraméterei:**
 
-| Paraméter         | Érték         |
+| Paraméter         | Érték        |
 |-------------------|--------------|
 | $N$               | $8$          |
 | $\nu_i$           | $e^{-i}$     |
-| $\phi_i$          | $\frac{i}{2}$          |
+| $\phi_i$          | $\frac{i}{2}$|
 
 #### Eredmények
 
