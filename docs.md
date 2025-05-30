@@ -180,7 +180,6 @@ A multi-step modell eredményei:
 | 75%                   | 0.908922   | 0.607534   | 0.477222   |
 | Maximum               | 0.990334   | 0.668871   | 0.546258   |
 
-
 A single-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
@@ -193,13 +192,19 @@ A single-step modell eredményei:
 | 75%                   | 0.815945   | 0.670578   | 0.680598   |
 | Maximum               | 0.924577   | 0.732448   | 0.958992   |
 
+Mann-Whitney U-próba eredményei:
+
+|R$^2$|MAAPE|NRMSE|
+|-------|--------|---------|
+| szignifikáns|szignifikáns|szignifikáns|
+
+*A próbát 95%-os konfidencia mellett végeztük el.*
 
 ![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/baseline_histograms.png){#fig:baseline_hisograms}
 
 ![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/baseline_metrics_over_horizon.png){#fig:baseline_metrics_over_horizon}
 
 ![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/baseline_targets.png){#fig:baseline_targets}
-
 
 ### Konstans amplitúdójú felharmonikusok
 
@@ -236,6 +241,14 @@ A single-step modell eredményei:
 | 50% (Medián)          | 0.956709   | 0.289023   | 0.176190   |
 | 75%                   | 0.964651   | 0.313658   | 0.189437   |
 | Maximum               | 0.974404   | 0.388278   | 0.211980   |
+
+Mann-Whitney U-próba eredményei:
+
+|R$^2$|MAAPE|NRMSE|
+|-------|--------|---------|
+| szignifikáns|szignifikáns|szignifikáns|
+
+*A próbát 95%-os konfidencia mellett végeztük el.*
 
 Mindkét modell teljesítménye javulást mutatott az előző állapothoz képest, azonban a multistep modell jelentősen jobb eredményeket ért el, egyértelműen felülmúlva a single-step megközelítést.
 
@@ -281,6 +294,13 @@ A single-step modell eredményei:
 | 75%                   | 0.859210   | 0.628328   | 0.571633   |
 | Maximum               | 0.955980   | 0.712459   | 0.782898   |
 
+Mann-Whitney U-próba eredményei:
+
+|R$^2$|MAAPE|NRMSE|
+|-------|--------|---------|
+| szignifikáns| nem szignifikáns|szignifikáns|
+
+*A próbát 95%-os konfidencia mellett végeztük el.*
 A két modell teljesítménye annyira hasonló volt, hogy a MAAPE mutató esetében a különbség statisztikailag nem szignifikánsnak bizonyult (Mann–Whitney U teszt alapján).
 A multistep modell pontossága nem javult érdemben az alaphelyzethez képest, míg a single-step modell esetében enyhe teljesítménynövekedés figyelhető meg.
 
@@ -326,6 +346,13 @@ A singe-step modell eredményei:
 | 75%                   | 0.990101   | 0.296830   | 0.149235   |
 | Maximum               | 0.993446   | 0.417857   | 0.211316   |
 
+Mann-Whitney U-próba eredményei:
+
+|R$^2$|MAAPE|NRMSE|
+|-------|--------|---------|
+| szignifikáns|szignifikáns|szignifikáns|
+
+*A próbát 95%-os konfidencia mellett végeztük el.*
 Mindkét modell teljesítménye javulást mutatott az alapállapothoz képest, azonban a multistep modell jelentősen jobb eredményeket ért el, egyértelműen felülmúlva a single-step megközelítést.
 
 ![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_phase_constant_amplitude_histograms.png){#fig:constant_phase_constant_amplitude_hisograms}
@@ -370,7 +397,15 @@ A single-step modell eredményei:
 | 75%                   | 0.848639   | 0.666859   | 0.654348   |
 | Maximum               | 0.965065   | 0.737749   | 0.880469   |
 
-A single-step modell egy kisit, a hisztogramokon alig látható mértékben erősödött. 
+Mann-Whitney U-próba eredményei:
+
+|R$^2$|MAAPE|NRMSE|
+|-------|--------|---------|
+| szignifikáns|szignifikáns|szignifikáns|
+
+*A próbát 95%-os konfidencia mellett végeztük el.*
+
+Az egylépéses modell egy kicsit, a hisztogramokon alig látható mértékben erősödött.
 Ezzel szemben a multistep modell predikciós pontossága romlott: az előnye minimálisra csökkent, bár az R² és NRMSE mutatók alapján a különbség még mindig statisztikailag szignifikáns.
 Fontos megjegyezni, hogy MAAPE alapján a multistep modell kifejezetten gyengébben szerepelt.
 
