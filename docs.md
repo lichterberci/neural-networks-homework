@@ -152,7 +152,7 @@ $$
 #### Normalizált Gyökös Középérték Négyzetes Hiba (NRMSE)
 
 $$
-\text{NRMSE} = \frac{\sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{\var{y}}
+\text{NRMSE} = \sqrt{\frac{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\text{var}\left(y\right)}}
 $$
 
 ### Alapeset (baseline)
