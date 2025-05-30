@@ -1,10 +1,34 @@
-## Motiváció
+## Háttér és motiváció
 
-[@taiebrecursive]
+A problémakör egy gyakorlati alkalmazásban merült fel, amiben egy nagyon zajos és komplex nemlineáris, azonban valamelyest periodikus jelet kellett előrejelezni egy viszonylag hosszú időtávra. Intuitíven úgy tűnt, hogy a háttérben álló differenciálegyenletre való visszavezetés lenne a legjobb megoldás, amely kiértékelése megadja a jövőbeli értékeket (ez a rekurzív előrejelzés). Ez a következő formát öltené:
+
+$$
+\begin{aligned}
+x\left(t + \Delta t\right) - x\left(t\right) &= f\left(x\left(t\right), x\left(t - \Delta t\right), \ldots, x\left(t - n \cdot \Delta t\right)\right) + \epsilon\left(t + \Delta t\right), \\
+\implies x\left(t + m \cdot \Delta t\right) &= x\left(t\right) + \sum_{i=0}^{m-1} \left( f\left(x\left(t + i \cdot \Delta t\right), x\left(t + (i - 1) \cdot \Delta t\right), \ldots, x\left(t + (i - n) \cdot \Delta t\right)\right) + \epsilon_\text{rekurzív}\left(t + m \cdot \Delta t\right) \right) \\
+&= x\left(t\right) + \sum_{i=0}^{m-1} f\left(x\left(t + i \cdot \Delta t\right), x\left(t + (i - 1) \cdot \Delta t\right), \ldots, x\left(t + (i - n) \cdot \Delta t\right)\right) + \sum_{i=0}^{m-1} \epsilon_\text{rekurzív}\left(t + m \cdot \Delta t\right)
+\end{aligned}
+$$
+
+Ahogy az jól látszik, hogy a $\epsilon_\text{rekurzív}\left(t + \Delta t\right)$ hibák akkumulálódnak, így minél távolabbra szeretnénk előrejelezni, annál nagyobb hibával kell számolnunk.
+
+Egy másik megközelítés, amelyet a gyakorlatban gyakran használnak, az egylépéses előrejelzés, amely a következő formát ölti:
+
+$$
+\begin{aligned}
+x\left(t + m \cdot \Delta t\right) &= f\left(x\left(t\right), x\left(t - \Delta t\right), \ldots, x\left(t - n \cdot \Delta t\right)\right) + \epsilon_\text{egylépéses}\left(t + m \cdot \Delta t\right)
+\end{aligned}
+$$
+
+Ezen megközelítésnek az az előnye, hogy a hibája nem akkumulálódik, azonban egy nehezebb feladatot old meg, így a hibája általában nagyobb ($\epsilon_\text{egylépéses}\left(t + m \cdot \Delta t\right) > \epsilon_\text{rekurzív}\left(t + m \cdot \Delta t\right)$). Ennek ellenére képes pontosabb előrejelzést adni, mivel a rekurzív előrejelzés hibája felhalmozódik, míg az egylépéses előrejelzés hibája nem:
+
+$$
+\text{az egylépéses modell jobb} \iff \epsilon_\text{egylépéses}\left(t + m \cdot \Delta t\right) < \sum_{i=0}^{m-1} \epsilon_\text{rekurzív}\left(t + m \cdot \Delta t\right)
+$$
 
 ## A vizsgált idősor
 
-A vizsgált idősor egy szintetikus, periodikus jel, amelyet a következő képlettel definiálunk:
+A vizsgált idősor egy szint etikus, periodikus jel, amelyet a következő képlettel definiálunk:
 
 $$
 \begin{aligned}
