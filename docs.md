@@ -135,6 +135,8 @@ A generált jel 700 másodperc hosszú, amelyből az első 40%-ot tanulásra, 10
 
 Az egyes modellek tanítását (hiperparaéterek optimalizációjával) követően a teljes teszt adathalmazon kiértékeltük (minden olyan ablakon, amely a visszatekintési ablakot figyelembe véve belefér a tesztelési adathalmazba) a modellek teljesítményét. Minden modell minden előrejezési horizonton ki volt értékelve [három pontossági metrika](#a-pontossági-metrikák) szerint is. Így minden előrejelzési horizonthoz kapunk egy eloszlást. Minket ebből a kétdimenziós eloszlásból az utolsó időpillanathoz (maximális előrejelzési horizonthoz) tartozó eloszlások fontosak, illetve az előrejelzési horizont függvényében a metrikák átlaga és 95%-os konfidencia intervalluma.
 
+Az utolsó időpillanathoz tartozó eloszlásokra egy Mann-Whitney U tesztet hajtottunk végre, amely megmutatja, hogy a két eloszlás statisztikailag szignifikánsan különbözik-e egymástól. A próba megválasztása mögötti indoklás az, hogy a pontossági metrikák eloszlása nem normális, így a paraméteres tesztek nem alkalmazhatóak. A Mann-Whitney U teszt egy nem-paraméteres teszt, amely képes összehasonlítani két eloszlás középső értékét, és megmondani, hogy szignifikánsan különböznek-e egymástól. Továbbá fontos volt, hogy képes legyen különböző méretű minták összehasonlítására is, mivel a visszatekintési ablak mérete változhatott a különböző modellek esetén.
+
 ### A pontossági metrikák
 
 #### Determinisztikus együttható ($R^2$)
@@ -163,7 +165,7 @@ $$
 |-------------------|--------------|
 | $N$               | $8$          |
 | $\nu_i$           | $e^{-i}$     |
-| $\phi_i$          | $0.5*i$          |
+| $\phi_i$          | $\frac{i}{2}$          |
 
 #### Eredmények
 
