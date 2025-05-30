@@ -167,7 +167,6 @@ $$
 | $\nu_i$           | $e^{-i}$     |
 | $\phi_i$          | $\frac{i}{2}$|
 
-\newpage
 
 #### Eredmények \newline
 
@@ -197,6 +196,7 @@ A single-step modell eredményei:
 | 50% (Medián)          | 0.776785   | 0.640956   | 0.530587   |
 | 75%                   | 0.815945   | 0.670578   | 0.680598   |
 | Maximum               | 0.924577   | 0.732448   | 0.958992   |
+
 
 
 ![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/baseline_histograms.png){#fig:baseline_hisograms}
@@ -245,12 +245,14 @@ A single-step modell eredményei:
 | 75%                   | 0.964651   | 0.313658   | 0.189437   |
 | Maximum               | 0.974404   | 0.388278   | 0.211980   |
 
+Mindkét modell teljesítménye javulást mutatott az előző állapothoz képest, azonban a multistep modell jelentősen jobb eredményeket ért el, egyértelműen felülmúlva a single-step megközelítést.
 
-![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_amplitude_histograms.png){#fig:onstant_amplitude_hisograms}
 
-![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/constant_amplitude_metrics_over_horizon.png){#fig:onstant_amplitude_metrics_over_horizon}
+![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_amplitude_histograms.png){#fig:constant_amplitude_hisograms}
 
-![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/constant_amplitude_targets.png){#fig:onstant_amplitude_targets}
+![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/constant_amplitude_metrics_over_horizon.png){#fig:constant_amplitude_metrics_over_horizon}
+
+![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/constant_amplitude_targets.png){#fig:constant_amplitude_targets}
 
 ### Azonos fázisú felharmonikusok
 
@@ -290,11 +292,14 @@ A single-step modell eredményei:
 | 75%                   | 0.859210   | 0.628328   | 0.571633   |
 | Maximum               | 0.955980   | 0.712459   | 0.782898   |
 
-![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_phase_histograms.png){#fig:onstant_phase_hisograms}
+A két modell teljesítménye annyira hasonló volt, hogy a MAAPE mutató esetében a különbség statisztikailag nem szignifikánsnak bizonyult (Mann–Whitney U teszt alapján).
+A multistep modell pontossága nem javult érdemben az alaphelyzethez képest, míg a single-step modell esetében enyhe teljesítménynövekedés figyelhető meg.
 
-![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/constant_phase_metrics_over_horizon.png){#fig:onstant_phase_metrics_over_horizon}
+![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_phase_histograms.png){#fig:constant_phase_hisograms}
 
-![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/constant_phase_targets.png){#fig:onstant_phase_targets}
+![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/constant_phase_metrics_over_horizon.png){#fig:constant_phase_metrics_over_horizon}
+
+![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/constant_phase_targets.png){#fig:constant_phase_targets}
 
 ### Azonos fázisú, azonos amplitúdójú felharmonikusok
 
@@ -307,6 +312,41 @@ A single-step modell eredményei:
 | $\phi_i$          | $0$          |
 
 #### Eredmények \newline
+
+A multi-step modell eredményei: 
+
+| Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
+|:----------------------|:----------:|:----------:|:----------:|
+| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
+| Átlag                 | 0.996943   | 0.141795   | 0.052993   |
+| Szórás                | 0.001832   | 0.038001   | 0.015380   |
+| Minimum               | 0.990254   | 0.063674   | 0.029800   |
+| 25%                   | 0.995883   | 0.114157   | 0.040606   |
+| 50% (Medián)          | 0.997641   | 0.136857   | 0.048513   |
+| 75%                   | 0.998355   | 0.166824   | 0.064159   |
+| Maximum               | 0.999107   | 0.258390   | 0.097862   |
+
+
+A singe-step modell eredményei:
+
+| Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
+|:----------------------|:----------:|:----------:|:----------:|
+| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
+| Átlag                 | 0.983068   | 0.268878   | 0.124674   |
+| Szórás                | 0.008837   | 0.045244   | 0.031973   |
+| Minimum               | 0.955019   | 0.180249   | 0.080115   |
+| 25%                   | 0.977305   | 0.238641   | 0.098538   |
+| 50% (Medián)          | 0.985808   | 0.258839   | 0.116803   |
+| 75%                   | 0.990101   | 0.296830   | 0.149235   |
+| Maximum               | 0.993446   | 0.417857   | 0.211316   |
+
+Mindkét modell teljesítménye javulást mutatott az alapállapothoz képest, azonban a multistep modell jelentősen jobb eredményeket ért el, egyértelműen felülmúlva a single-step megközelítést.
+
+![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_phase_constant_amplitude_histograms.png){#fig:constant_phase_constant_amplitude_hisograms}
+
+![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/constant_phase_constant_amplitude_metrics_over_horizon.png){#fig:constant_phase_constant_amplitude_metrics_over_horizon}
+
+![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/constant_phase_constant_amplitude_targets.png){#fig:constant_phase_constant_amplitude_targets}
 
 ### Sok felharmonikus
 
@@ -354,7 +394,7 @@ Fontos megjegyezni, hogy MAAPE alapján a multistep modell kifejezetten gyengéb
 
 ![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/1000_metrics_over_horizon.png){#fig:1000_metrics_over_horizon}
 
-![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/1000_targets.png){#fig:b1000_targets}
+![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/1000_targets.png){#fig:1000_targets}
 
 
 
