@@ -152,7 +152,7 @@ $$
 #### Normalizált Gyökös Középérték Négyzetes Hiba (NRMSE)
 
 $$
-\text{NRMSE} = \frac{\sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{\max(y) - \min(y)}
+\text{NRMSE} = \frac{\sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}}{\var{y}}
 $$
 
 ### Alapeset (baseline)
@@ -170,6 +170,10 @@ $$
 TODO: eredmények beszúrása
 
 ![fig:baseline_histograms](./figures/baseline_histograms.png){#fig:baseline_histograms}
+
+TODO: szöveges kiértékelés (1-2 mondat)
+
+### Másik esetek... (TODO)
 
 TODO: másik 3 eset bemutatása
 
