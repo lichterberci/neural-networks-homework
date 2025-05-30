@@ -5,7 +5,7 @@ A problémakör egy gyakorlati alkalmazásban merült fel, amiben egy nagyon zaj
 $$
 \begin{aligned}
 \dot{x}\left(t\right) \approx x\left(t + \Delta t\right) - x\left(t\right) =&\ f\left(x\left(t\right), x\left(t - \Delta t\right), \ldots, x\left(t - n \cdot \Delta t\right)\right) \\
-&+ \epsilon\left(t + \Delta t\right) \\
+&+ \epsilon\left(t + \Delta t\right) + \mathcal{O}(\Delta t) \\
 \implies x\left(t + m \cdot \Delta t\right) =&\ x\left(t\right) \\
 &+ \sum_{i=0}^{m-1} \biggl( f\left(x\left(t + i \cdot \Delta t\right), x\left(t + (i - 1) \cdot \Delta t\right), \ldots, x\left(t + (i - n) \cdot \Delta t\right)\right) \\
 &\quad + \epsilon_\text{rekurzív}\left(t + m \cdot \Delta t\right) \biggr) \\
@@ -61,8 +61,6 @@ Az interferáló zaj a következő paraméterekkel definiálható:
 A fehér zaj a következő paraméterekkel definiálható:
 
 - $\sigma$: a fehér zaj szórása
-
-#TODO: kép a jelről
 
 ### Miért szintetikus jel?
 
@@ -135,7 +133,7 @@ A generált jel 700 másodperc hosszú, amelyből az első 40%-ot tanulásra, 10
 
 Az egyes modellek tanítását (hiperparaéterek optimalizációjával) követően a teljes teszt adathalmazon kiértékeltük (minden olyan ablakon, amely a visszatekintési ablakot figyelembe véve belefér a tesztelési adathalmazba) a modellek teljesítményét. Minden modell minden előrejezési horizonton ki volt értékelve [három pontossági metrika](#a-pontossági-metrikák) szerint is. Így minden előrejelzési horizonthoz kapunk egy eloszlást. Minket ebből a kétdimenziós eloszlásból az utolsó időpillanathoz (maximális előrejelzési horizonthoz) tartozó eloszlások fontosak, illetve az előrejelzési horizont függvényében a metrikák átlaga és 95%-os konfidencia intervalluma.
 
-Az utolsó időpillanathoz tartozó eloszlásokra egy Mann-Whitney U tesztet hajtottunk végre, amely megmutatja, hogy a két eloszlás statisztikailag szignifikánsan különbözik-e egymástól. A próba megválasztása mögötti indoklás az, hogy a pontossági metrikák eloszlása nem normális, így a paraméteres tesztek nem alkalmazhatóak. A Mann-Whitney U teszt egy nem-paraméteres teszt, amely képes összehasonlítani két eloszlás középső értékét, és megmondani, hogy szignifikánsan különböznek-e egymástól. Továbbá fontos volt, hogy képes legyen különböző méretű minták összehasonlítására is, mivel a visszatekintési ablak mérete változhatott a különböző modellek esetén.
+Az utolsó időpillanathoz tartozó eloszlásokra egy Mann-Whitney U tesztet [@mcknight2010mann] hajtottunk végre, amely megmutatja, hogy a két eloszlás statisztikailag szignifikánsan különbözik-e egymástól. A próba megválasztása mögötti indoklás az, hogy a pontossági metrikák eloszlása nem normális, így a paraméteres tesztek nem alkalmazhatóak. A Mann-Whitney U teszt egy nem-paraméteres teszt, amely képes összehasonlítani két eloszlás középső értékét, és megmondani, hogy szignifikánsan különböznek-e egymástól. Továbbá fontos volt, hogy képes legyen különböző méretű minták összehasonlítására is, mivel a visszatekintési ablak mérete változhatott a különböző modellek esetén.
 
 ### A pontossági metrikák
 
@@ -174,7 +172,6 @@ A multi-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.861215   | 0.533088   | 0.389559   |
 | Szórás                | 0.064623   | 0.109054   | 0.121122   |
 | Minimum               | 0.760632   | 0.175470   | 0.100543   |
@@ -188,7 +185,6 @@ A single-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.748613   | 0.605215   | 0.563616   |
 | Szórás                | 0.109455   | 0.089643   | 0.158023   |
 | Minimum               | 0.450480   | 0.345066   | 0.285388   |
@@ -198,13 +194,11 @@ A single-step modell eredményei:
 | Maximum               | 0.924577   | 0.732448   | 0.958992   |
 
 
-
 ![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/baseline_histograms.png){#fig:baseline_hisograms}
 
 ![A metrikák értékeinek előrejelzési horizont szerinti változásainak ábrázolása vonaldiagramokon](./figures/baseline_metrics_over_horizon.png){#fig:baseline_metrics_over_horizon}
 
 ![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/baseline_targets.png){#fig:baseline_targets}
-
 
 
 ### Konstans amplitúdójú felharmonikusok
@@ -219,11 +213,10 @@ A single-step modell eredményei:
 
 #### Eredmények \newline
 
-A multi-step modell eredményei: 
+A multi-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.996012   | 0.155957   | 0.060017   |
 | Szórás                | 0.002521   | 0.039808   | 0.018727   |
 | Minimum               | 0.987715   | 0.059417   | 0.029973   |
@@ -236,7 +229,6 @@ A single-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.956486   | 0.292970   | 0.175567   |
 | Szórás                | 0.009180   | 0.033163   | 0.015822   |
 | Minimum               | 0.932472   | 0.216166   | 0.141025   |
@@ -246,7 +238,6 @@ A single-step modell eredményei:
 | Maximum               | 0.974404   | 0.388278   | 0.211980   |
 
 Mindkét modell teljesítménye javulást mutatott az előző állapothoz képest, azonban a multistep modell jelentősen jobb eredményeket ért el, egyértelműen felülmúlva a single-step megközelítést.
-
 
 ![A metrikák eloszlásának ábrázolása hisztogramokon](./figures/constant_amplitude_histograms.png){#fig:constant_amplitude_hisograms}
 
@@ -270,7 +261,6 @@ A multi-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.824305   | 0.582514   | 0.452977   |
 | Szórás                | 0.069269   | 0.119868   | 0.123881   |
 | Minimum               | 0.727687   | 0.190561   | 0.134771   |
@@ -279,11 +269,10 @@ A multi-step modell eredményei:
 | 75%                   | 0.868249   | 0.663283   | 0.540860   |
 | Maximum               | 0.982459   | 0.715664   | 0.614921   |
 
-A single-step modell eredményei: 
+A single-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.804158   | 0.541396   | 0.482865   |
 | Szórás                | 0.087801   | 0.107451   | 0.133974   |
 | Minimum               | 0.594845   | 0.270309   | 0.219784   |
@@ -317,7 +306,6 @@ A multi-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.996943   | 0.141795   | 0.052993   |
 | Szórás                | 0.001832   | 0.038001   | 0.015380   |
 | Minimum               | 0.990254   | 0.063674   | 0.029800   |
@@ -326,12 +314,10 @@ A multi-step modell eredményei:
 | 75%                   | 0.998355   | 0.166824   | 0.064159   |
 | Maximum               | 0.999107   | 0.258390   | 0.097862   |
 
-
 A singe-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.983068   | 0.268878   | 0.124674   |
 | Szórás                | 0.008837   | 0.045244   | 0.031973   |
 | Minimum               | 0.955019   | 0.180249   | 0.080115   |
@@ -356,15 +342,14 @@ Mindkét modell teljesítménye javulást mutatott az alapállapothoz képest, a
 |-------------------|--------------|
 | $N$               | $1000$          |
 | $\nu_i$           | $e^{-i}$     |
-| $\phi_i$          | $0.5*i$          |
+| $\phi_i$          | $\frac{i}{2}$          |
 
 #### Eredmények \newline
 
-A multi-step modell eredményei: 
+A multi-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.847434   | 0.545867   | 0.416204   |
 | Szórás                | 0.062518   | 0.109039   | 0.115635   |
 | Minimum               | 0.767075   | 0.233465   | 0.133130   |
@@ -377,7 +362,6 @@ A single-step modell eredményei:
 
 | Statisztika / Metrika |     R²     |   MAAPE    |   NRMSE    |
 |:----------------------|:----------:|:----------:|:----------:|
-| Adatok száma          | 561.000000 | 561.000000 | 561.000000 |
 | Átlag                 | 0.776035   | 0.576163   | 0.528561   |
 | Szórás                | 0.104149   | 0.120279   | 0.168768   |
 | Minimum               | 0.533675   | 0.249557   | 0.193142   |
@@ -396,9 +380,7 @@ Fontos megjegyezni, hogy MAAPE alapján a multistep modell kifejezetten gyengéb
 
 ![Az utolsó 3 predikció során a predikált és a valós értékek összehasonlítása](./figures/1000_targets.png){#fig:1000_targets}
 
-
-
-## Konklúzió
+## Összefoglalás
 
 A kísérletek során sikerült bemutatni, hogy a rekurzív és egylépéses előrejelzés is képes jól teljesíteni a vizsgált idősor előrejelzésében, azonban legtöbb esetben az egylépéses előrejelzés volt a jobb teljesítményű (különösen a hosszú távú előrejelzésnél). A rekurzív előrejelzés esetén a hibák felhalmozódása miatt a hosszú távú előrejelzés pontossága csökkent, míg az egylépéses előrejelzés esetén a hibák nem halmozódtak fel, így a hosszú távú előrejelzés is pontosabb volt.
 
