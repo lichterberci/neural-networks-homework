@@ -129,7 +129,7 @@ Utóbbi ($f_s$) a megfigyelési frekvencia, amely a jel mintavételezésének gy
 
 A generált jel 700 másodperc hosszú, amelyből az első 40%-ot tanulásra, 10%-ot validációra, és a maradék 50%-ot tesztelésre használtuk. Fontos megjegyezni, hogy mindenhol a zajos jelet használtuk, kivéve a tesztelésnél a kiértékeléshez; ezzel mimikálva a valós életben előforduló helyzeteket (ahol nem áll rendelkezésre a tiszta jel, azonban a modell helyességét a tiszta jelhez viszonyított hibája határozza meg).
 
-#TODO: kép a felosztásról
+![fig:wave_partitioning](./figures/wave.png){#fig:wave_partitioning}
 
 ### Az eredmények kiértékelése
 
@@ -163,13 +163,12 @@ $$
 |-------------------|--------------|
 | $N$               | $8$          |
 | $\nu_i$           | $e^{-i}$     |
-| $\phi_i$          | $0$          |
+| $\phi_i$          | $0.5*i$          |
 
 #### Eredmények
 
 TODO: eredmények beszúrása
-
-![fig:baseline_histograms](./figures/baseline_histograms.png){#fig:baseline_histograms}
+![fig:baseline_histograms](./figures/baseline_histograms.svg){#fig:baseline_histograms}
 
 TODO: szöveges kiértékelés (1-2 mondat)
 
