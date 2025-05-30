@@ -1,0 +1,15 @@
+---
+title:  'Rekurzív és egylépéses idősorelőrejelzők pontosságának vizsgálata'
+author:
+- Szakos Máté
+- Lichter Bertalan
+keywords: [idősor előrejelzés, drift jelenség]
+lang: hu
+abstract: |
+  A gyakorlatban használt előrejelző modellektől az esetek többségében egy előre ismert előrejelzési horizonton szeretnénk tudni az idősorok jövőbeli értékeit. Ez elsősorban abból adódik, hogy a legtöbb alkalmazásban a döntések fix jövőbeli értékekre épülnek, például egy napra, hétre előrejelzett értékekre.
+  Ha megvizsgáljuk a legelterjedtebb idősorelőrejelző modelleket, azt láthatjuk, hogy a legtöbb esetben rekurzív előrejelzést alkalmaznak, azaz a jövőbeli értékeket a múltbeli értékekből, pontonként számítják ki. Ez sokszor jó illeszkedést tesz lehetővé, azonban megjelenhet az úgynevezett drift jelenség. Ennek lényege, hogy a modell kis hibával előrejelzi a jövőbeli értékeket, azonban a hibák összeadódnak, így a jövőbeli előrejelzések pontossága csökkenhet. Ezzel szemben az egylépéses előrejelzés esetén a modell minden egyes jövőbeli értéket külön számít ki, így elkerülhető a drift jelenség. Utóbbi megközelítés hátránya azonban, hogy a legtöbb esetben rosszabb illeszkedést eredményez, mivel a függvény, amelyet megközelít, lényegesen bonyolultabb, mint a rekurzív előrejelzés esetén.
+  Jelen házi feladat célja, hogy a két megközelítés pontosságát összehasonlítsa, és megvizsgálja, hogy melyik esetben érhető el jobb előrejelzési teljesítmény.
+  Házi feladatunkban azt találtuk, hogy stacioner, periodikus idősorok esetén a rekurzív előrejelzés sokszor kevésbé pontos, mint az egylépéses előrejelzés. Az interferáló jel, illetve a fehér zaj mértéke nagy hatással van a pontosságra, azonban szinte minden esetben az egylépéses előrejelzés volt a pontosabb.
+citation-style: ieee
+
+---
